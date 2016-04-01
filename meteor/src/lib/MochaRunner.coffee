@@ -38,6 +38,7 @@ class practical.MochaRunner
       Meteor.publish 'mochaServerRunEvents', (runId)->
         try
           log.enter 'publish.mochaServerRunEvents'
+          check(runId, String);
           expect(@ready).to.be.a('function')
           self.publishers[runId] ?= @
           @ready()
