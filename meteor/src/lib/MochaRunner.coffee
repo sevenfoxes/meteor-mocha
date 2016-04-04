@@ -38,6 +38,7 @@ class practical.MochaRunner
       Meteor.publish 'mochaServerRunEvents', (runId)->
         try
           log.enter 'publish.mochaServerRunEvents'
+          check(runId, String);
           expect(@ready).to.be.a('function')
           self.publishers[runId] ?= @
           @ready()
@@ -55,6 +56,8 @@ class practical.MochaRunner
   runServerTests: (runId, grep)=>
     try
       log.enter("runServerTests", runId)
+      check(runId, String);
+      check(grep, Match.Optional(Match.OneOf(null, String)));
       expect(runId).to.be.a("string")
       expect(@publishers[runId], "publisher").to.be.an("object")
       expect(Meteor.isServer).to.be.true

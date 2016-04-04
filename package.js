@@ -21,6 +21,7 @@ Package.onUse(function (api) {
   api.use('mongo');
   api.use('autoupdate');
   api.use('ecmascript');
+  api.use('check');
 
   // If we use a reactive reporter such as meteor's test-in-browser one,
   // we'll need all of this.
