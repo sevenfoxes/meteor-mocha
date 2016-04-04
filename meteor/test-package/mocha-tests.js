@@ -158,3 +158,41 @@ describe.skip('8 - skip suite', function() {
     throw new Error("This is an error");
   });
 });
+
+describe("9 -  before and after hooks errors", ()=>{
+
+  before(()=>{
+
+    throw new Error("Error from before");
+  });
+
+  it("It hooks with errors", ()=>{
+    throw new Error("This will not throw")
+  });
+
+  after(()=>{
+
+    throw new Error("Error from after");
+  });
+
+});
+
+
+describe("10 - beforeEach and afterEach hooks errors", ()=>{
+
+  beforeEach(()=>{
+
+    throw new Error("Error from beforeEach");
+  });
+
+  it("It hooks with errors", ()=>{
+    throw new Error("This will not throw")
+  });
+
+  afterEach(()=>{
+
+    throw new Error("Error from afterEach");
+  });
+
+});
+

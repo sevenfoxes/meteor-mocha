@@ -161,22 +161,7 @@ describe.skip('Full app: 8 - skip suite', function() {
 });
 
 
-describe("Full app: Before and After hooks errors", ()=>{
-
-  before(()=>{
-
-    throw new Error("Error from before");
-  });
-
-  after(()=>{
-
-    throw new Error("Error from after");
-  });
-
-});
-
-
-describe("Full app: Before and After hooks errors", ()=>{
+describe("Full app: 9 -  before and after hooks errors", ()=>{
 
   before(()=>{
 
@@ -184,7 +169,7 @@ describe("Full app: Before and After hooks errors", ()=>{
   });
 
   it("It hooks with errors", ()=>{
-      throw new Error("This will not throw")
+    throw new Error("This will not throw")
   });
 
   after(()=>{
@@ -195,7 +180,7 @@ describe("Full app: Before and After hooks errors", ()=>{
 });
 
 
-describe("Full app: Before and After hooks errors", ()=>{
+describe("Full app: 10 - beforeEach and afterEach hooks errors", ()=>{
 
   beforeEach(()=>{
 
