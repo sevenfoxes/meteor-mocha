@@ -4,6 +4,7 @@ import TestCollection from "./import/collections/TestCollection"
 
 
 describe('Full app: 1 - Array', function() {
+
   describe('1.1 - #indexOf()', function() {
     return it('should return -1 when the value is not present', function() {
       expect([1, 2, 3].indexOf(5)).to.equal(-1);
@@ -158,3 +159,57 @@ describe.skip('Full app: 8 - skip suite', function() {
     throw new Error("This is an error");
   });
 });
+
+
+describe("Full app: Before and After hooks errors", ()=>{
+
+  before(()=>{
+
+    throw new Error("Error from before");
+  });
+
+  after(()=>{
+
+    throw new Error("Error from after");
+  });
+
+});
+
+
+describe("Full app: Before and After hooks errors", ()=>{
+
+  before(()=>{
+
+    throw new Error("Error from before");
+  });
+
+  it("It hooks with errors", ()=>{
+      throw new Error("This will not throw")
+  });
+
+  after(()=>{
+
+    throw new Error("Error from after");
+  });
+
+});
+
+
+describe("Full app: Before and After hooks errors", ()=>{
+
+  beforeEach(()=>{
+
+    throw new Error("Error from beforeEach");
+  });
+
+  it("It hooks with errors", ()=>{
+    throw new Error("This will not throw")
+  });
+
+  afterEach(()=>{
+
+    throw new Error("Error from afterEach");
+  });
+
+});
+
