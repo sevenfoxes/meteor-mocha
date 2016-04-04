@@ -67,7 +67,7 @@ describe('Runnable(title, fn)', function(){
     it('should be .async', function(){
       var run = new Runnable('foo', function(done){});
       run.async.should.equal(1);
-      run.sync.should.be.false;
+      run.sync.should.be.false();
     })
   })
 
@@ -75,7 +75,7 @@ describe('Runnable(title, fn)', function(){
     it('should be .sync', function(){
       var run = new Runnable('foo', function(){});
       run.async.should.be.equal(0);
-      run.sync.should.be.true;
+      run.sync.should.be.true();
     })
   })
 
@@ -83,9 +83,17 @@ describe('Runnable(title, fn)', function(){
     it('should allow for whitelisting globals', function(done){
       var test = new Runnable('foo', function(){});
       test.async.should.be.equal(0);
-      test.sync.should.be.true;
+      test.sync.should.be.true();
       test.globals(['foobar']);
       test.run(done);
+    })
+  })
+
+  describe('#retries(n)', function(){
+    it('should set the number of retries', function(){
+      var run = new Runnable;
+      run.retries(1);
+      run.retries().should.equal(1);
     })
   })
 
@@ -130,6 +138,20 @@ describe('Runnable(title, fn)', function(){
             err.message.should.equal('fail');
             done();
           })
+        })
+      })
+
+      describe('when an exception is thrown and is allowed to remain uncaught', function(){
+        it('throws an error when it is allowed', function(done) {
+          var test = new Runnable('foo', function(){
+            throw new Error('fail');
+          });
+          test.allowUncaught = true;
+          function fail() {
+            test.run(function(err) {});
+          }
+          fail.should.throw('fail');
+          done();
         })
       })
     })
@@ -239,6 +261,21 @@ describe('Runnable(title, fn)', function(){
         });
       })
 
+      describe('when an exception is thrown and is allowed to remain uncaught', function(){
+        it('throws an error when it is allowed', function(done) {
+          var test = new Runnable('foo', function(done){
+            throw new Error('fail');
+            process.nextTick(done);
+          });
+          test.allowUncaught = true;
+          function fail() {
+            test.run(function(err) {});
+          }
+          fail.should.throw('fail');
+          done();
+        })
+      })
+
       describe('when an error is passed', function(){
         it('should invoke the callback', function(done){
           var calls = 0;
@@ -290,7 +327,7 @@ describe('Runnable(title, fn)', function(){
         });
         test.timeout(10);
         test.run(function(err){
-          err.should.be.ok;
+          err.should.be.ok();
           callCount.should.equal(1);
           done();
         });
@@ -390,7 +427,7 @@ describe('Runnable(title, fn)', function(){
 
           test.timeout(10);
           test.run(function(err){
-            err.should.be.ok;
+            err.should.be.ok();
             done();
           });
         })

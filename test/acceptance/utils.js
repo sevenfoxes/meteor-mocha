@@ -89,6 +89,10 @@ describe('lib/utils', function () {
       stringify(date).should.equal('[Date: ' + date.toISOString() + ']');
     });
 
+    it('should return invalid Date object with .toString() + string prefix', function() {
+      stringify(new Date('')).should.equal('[Date: ' + new Date('').toString() + ']');
+    });
+
     describe('#Number', function() {
       it('should show the handle -0 situations', function() {
         stringify(-0).should.eql('-0');
@@ -327,6 +331,19 @@ describe('lib/utils', function () {
 
       stringify(a).should.equal('{\n  "foo": 1\n}');
     });
+
+    // In old version node.js, Symbol is not available by default.
+    if (typeof global.Symbol === 'function') {
+      it('should handle Symbol', function () {
+        var symbol = Symbol('value');
+        stringify(symbol).should.equal('Symbol(value)');
+        stringify({symbol: symbol}).should.equal('{\n  "symbol": Symbol(value)\n}')
+      });
+    }
+
+    it('should handle length properties that cannot be coerced to a number', function () {
+      stringify({length: {toString: 0}}).should.equal('{\n  "length": {\n    "toString": 0\n  }\n}');
+    });
   });
 
   describe('type', function () {
@@ -337,11 +354,32 @@ describe('lib/utils', function () {
       type(1).should.equal('number');
       type(Infinity).should.equal('number');
       type(null).should.equal('null');
+      type(undefined).should.equal('undefined');
       type(new Date()).should.equal('date');
       type(/foo/).should.equal('regexp');
       type('type').should.equal('string');
       type(global).should.equal('global');
       type(true).should.equal('boolean');
+    });
+
+    describe('when toString on null or undefined stringifies window', function () {
+      var toString = Object.prototype.toString;
+
+      beforeEach(function () {
+        // some JS engines such as PhantomJS 1.x exhibit this behavior
+        Object.prototype.toString = function () {
+          return '[object DOMWindow]';
+        };
+      });
+
+      it('should recognize null and undefined', function () {
+        type(null).should.equal('null');
+        type(undefined).should.equal('undefined');
+      });
+
+      afterEach(function () {
+        Object.prototype.toString = toString;
+      });
     });
   });
 
@@ -360,9 +398,9 @@ describe('lib/utils', function () {
         .should.containEql('/tmp/mocha-utils-link.js')
         .and.containEql('/tmp/mocha-utils.js')
         .and.have.lengthOf(2);
-      existsSync('/tmp/mocha-utils-link.js').should.be.true;
+      existsSync('/tmp/mocha-utils-link.js').should.be.true();
       fs.renameSync('/tmp/mocha-utils.js', '/tmp/bob');
-      existsSync('/tmp/mocha-utils-link.js').should.be.false;
+      existsSync('/tmp/mocha-utils-link.js').should.be.false();
       utils.lookupFiles('/tmp', ['js'], false).should.eql([]);
     });
 

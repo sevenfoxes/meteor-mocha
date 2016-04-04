@@ -1,3 +1,5 @@
+BROWSERIFY := node_modules/.bin/browserify
+ESLINT := node_modules/.bin/eslint
 
 REPORTER ?= spec
 TM_BUNDLE = JavaScript\ mocha.tmbundle
@@ -6,20 +8,14 @@ SUPPORT = $(wildcard support/*.js)
 
 all: mocha.js
 
-lib/browser/diff.js: node_modules/diff/diff.js
-	cp node_modules/diff/diff.js lib/browser/diff.js
-
-lib/browser/escape-string-regexp.js: node_modules/escape-string-regexp/index.js
-	cp node_modules/escape-string-regexp/index.js lib/browser/escape-string-regexp.js
-
-mocha.js: $(SRC) $(SUPPORT) lib/browser/diff.js lib/browser/escape-string-regexp.js
-	@node support/compile $(SRC)
-	@cat \
-	  support/head.js \
-	  _mocha.js \
-	  support/tail.js \
-	  support/foot.js \
-	  > mocha.js
+mocha.js: $(SRC) $(SUPPORT)
+	@$(BROWSERIFY) ./support/browser-entry \
+		--ignore 'fs' \
+		--ignore 'glob' \
+		--ignore 'jade' \
+		--ignore 'path' \
+		--ignore 'supports-color' \
+		--exclude './lib-cov/mocha' > $@
 
 clean:
 	rm -f mocha.js
@@ -34,9 +30,12 @@ lib-cov:
 	@rm -fr ./$@
 	@jscoverage lib $@
 
-test: test-unit
+lint:
+	@$(ESLINT) $(SRC)
 
-test-all: test-bdd test-tdd test-qunit test-exports test-unit test-grep test-jsapi test-compilers test-sort test-glob test-requires test-reporters test-only test-failing test-regression
+test: lint test-unit
+
+test-all: lint test-bdd test-tdd test-qunit test-exports test-unit test-integration test-jsapi test-compilers test-glob test-requires test-reporters test-only
 
 test-jsapi:
 	@node test/jsapi
@@ -48,25 +47,10 @@ test-unit:
 		--growl \
 		test/*.js
 
-test-regression: test-outputs/issue1327/case-out.json
+test-integration:
 	@./bin/mocha \
 		--reporter $(REPORTER) \
-		test/regression/issue*/control.js
-
-test-outputs/issue1327/case-out.json: test/regression/issue1327/case.js
-	@mkdir -p $(dir $@) || true
-	@./bin/mocha --reporter json $< > $@ || true
-
-test-failing:
-	./bin/mocha \
-		--reporter $(REPORTER) \
-		test/acceptance/failing/timeout.js > /dev/null 2>&1 ; \
-		failures="$$?" ; \
-		if [ "$$failures" != '2' ] ; then \
-			echo 'test-failing:' ; \
-			echo "  expected 2 failing tests but saw $$failures" ; \
-			exit 1 ; \
-		fi
+		test/integration/*.js
 
 test-compilers:
 	@./bin/mocha \
@@ -109,31 +93,6 @@ test-exports:
 		--ui exports \
 		test/acceptance/interfaces/exports
 
-test-grep:
-	@./bin/mocha \
-	  --reporter $(REPORTER) \
-	  --grep fast \
-	  test/acceptance/misc/grep
-
-test-invert:
-	@./bin/mocha \
-	  --reporter $(REPORTER) \
-	  --grep slow \
-	  --invert \
-	  test/acceptance/misc/grep
-
-test-bail:
-	@./bin/mocha \
-		--reporter $(REPORTER) \
-		--bail \
-		test/acceptance/misc/bail
-
-test-async-only:
-	@./bin/mocha \
-	  --reporter $(REPORTER) \
-	  --async-only \
-	  test/acceptance/misc/asyncOnly
-
 test-glob:
 	@./test/acceptance/glob/glob.sh
 
@@ -141,12 +100,6 @@ test-reporters:
 	@./bin/mocha \
 		--reporter $(REPORTER) \
 		test/reporters/*.js
-
-test-delay:
-	@./bin/mocha \
-		--reporter $(REPORTER) \
-		--delay \
-		test/delay/*.js
 
 test-only:
 	@./bin/mocha \
@@ -162,13 +115,12 @@ test-only:
 	@./bin/mocha \
 		--reporter $(REPORTER) \
 		--ui qunit \
-		test/acceptance/misc/only/qunit
+		test/acceptance/misc/only/bdd-require
 
-test-sort:
 	@./bin/mocha \
 		--reporter $(REPORTER) \
-		--sort \
-		test/acceptance/sort
+		--ui qunit \
+		test/acceptance/misc/only/qunit
 
 test-mocha:
 	@./bin/mocha \
@@ -200,4 +152,4 @@ non-tty:
 tm:
 	@open editors/$(TM_BUNDLE)
 
-.PHONY: test-cov test-jsapi test-compilers watch test test-all test-bdd test-tdd test-qunit test-exports test-unit non-tty test-grep test-failing tm clean
+.PHONY: test-cov test-jsapi test-compilers watch test test-all test-bdd test-tdd test-qunit test-exports test-unit test-integration non-tty tm clean
