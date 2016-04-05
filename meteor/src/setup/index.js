@@ -1,3 +1,4 @@
+import "meteor-node-stubs"
 import "./setupMochaServer"
 import setupMochaClient from "./setupMochaClient"
 import Mocha from "../../../lib/mocha"

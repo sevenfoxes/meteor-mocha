@@ -18,7 +18,8 @@ Npm.depends({
   "assert":"1.3.0",
   "escape-string-regexp": "1.0.2",
   "supports-color": "1.2.0",
-  "path": "0.12.7"
+  "path": "0.12.7",
+  "meteor-node-stubs": "0.2.1"
 });
 
 Package.onUse(function (api) {
