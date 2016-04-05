@@ -52,7 +52,6 @@ function HTML(runner, options) {
 
   var self = this
     , stats = this.stats
-    , total = runner.total
     , stat = fragment(statsTemplate)
     , items = stat.getElementsByTagName('li')
     , passes = items[1].getElementsByTagName('em')[0]
@@ -80,7 +79,7 @@ function HTML(runner, options) {
   }
 
   if (!root) {
-    return error(`#${options.elementIdPrefix}+'mocha div missing, add it to your document`);
+    return error(options.elementIdPrefix+'mocha div missing, add it to your document');
   }
 
   // pass toggle
@@ -258,7 +257,7 @@ HTML.prototype.testURL = function(test) {
  * @param {string} msg
  */
 function error(msg) {
-  document.body.appendChild(fragment('<div id="mocha-error">%s</div>', msg));
+  document.body.appendChild(fragment('<div class="mocha-error">%s</div>', msg));
 }
 
 /**

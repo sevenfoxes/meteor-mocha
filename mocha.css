@@ -241,7 +241,7 @@ body {
   display: block;
 }
 
-#mocha-error {
+.mocha-error {
   color: #c00;
   font-size: 1.5em;
   font-weight: 100;
