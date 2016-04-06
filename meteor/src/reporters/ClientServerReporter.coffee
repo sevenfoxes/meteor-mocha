@@ -1,4 +1,5 @@
 MochaRunner  = require("./../lib/MochaRunner")
+MirrorReporter = require('./MirrorReporter')
 {ObjectLogger}  = require("meteor/practicalmeteor:loglevel")
 {EventEmitter}  = require("events")
 
@@ -42,20 +43,10 @@ class ClientServerReporter
   runTestsSerially: (clientRunner, serverRunnerProxy)=>
     try
       log.enter("runTestsSerially",)
-
-      # Mirror every event from mocha's runner to our clientRunner
-      class MirrorReporter
-
-        constructor: (mochaClientRunner, options)->
-          clientRunner.total = mochaClientRunner.total
-          # Listen to every event sent from mochaClientRunner
-          mochaClientRunner.any (event, eventArgs)->
-            args = eventArgs.slice()
-            args.unshift(event)
-            clientRunner.emit.apply(clientRunner, args)
-
       serverRunnerProxy.on "end", =>
-        mocha.reporter(MirrorReporter)
+        mocha.reporter(MirrorReporter, {
+          clientRunner: clientRunner
+        })
         mocha.run(->)
 
     finally
