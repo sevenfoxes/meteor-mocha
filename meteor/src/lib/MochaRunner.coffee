@@ -9,7 +9,7 @@ log = new ObjectLogger('MochaRunner', 'info')
 
 class MochaRunner
 
-  VERSION: "2.4.5-rc.3"
+  VERSION: "2.4.5_1"
   @instance: null
 
   @get: ->
