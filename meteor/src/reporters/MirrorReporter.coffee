@@ -15,7 +15,6 @@ class MirrorReporter
       try
         log.enter 'onStart', arguments
         clientRunner.emit.call(clientRunner, 'start')
-        console.log("after.start")
       finally
         log.return()
 
@@ -23,7 +22,6 @@ class MirrorReporter
       try
         log.enter 'onSuite', arguments
         clientRunner.emit.call(clientRunner, 'suite',suite)
-        console.log("after.suite")
       finally
         log.return()
 
