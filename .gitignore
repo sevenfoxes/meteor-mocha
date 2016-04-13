@@ -13,4 +13,5 @@ lib/browser/diff.js
 *.iml
 *.patch
 *.diff
+npm-debug.log*
 *.npm

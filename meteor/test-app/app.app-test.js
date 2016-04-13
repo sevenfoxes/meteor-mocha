@@ -1,19 +1,47 @@
+import {describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
 import {expect} from "meteor/practicalmeteor:chai"
 import TestCollection from "./import/collections/TestCollection"
 
 
 describe('Full app: 1 - Array', function() {
+
   describe('1.1 - #indexOf()', function() {
     return it('should return -1 when the value is not present', function() {
       expect([1, 2, 3].indexOf(5)).to.equal(-1);
       return expect([1, 2, 3].indexOf(0)).to.equal(-1);
     });
   });
-  return describe('1.2 - length', function() {
+
+  describe('1.2 - length', function() {
     return it('should return length of array', function() {
       return expect([1, 2, 3].length).to.equal(3);
     });
   });
+
+  describe("Specify", function () {
+
+    specify("it works", function () {
+      expect(true).to.be.true;
+    });
+
+    xspecify("Skip: This won't run", function () {
+      throw new Error("This won't run")
+    })
+  })
+
+  context("Context test", function () {
+    it("it works", function () {
+      expect(true).to.be.true;
+    });
+  });
+
+  xcontext("Skip suite (xcontext)", function () {
+
+    it("This won't run", function () {
+      throw new Error("This won't run")
+    })
+  })
+
 });
 
 describe('Full app: 2 - Async test', function() {
@@ -131,3 +159,42 @@ describe.skip('Full app: 8 - skip suite', function() {
     throw new Error("This is an error");
   });
 });
+
+
+describe("Full app: 9 -  before and after hooks errors", ()=>{
+
+  before(()=>{
+
+    throw new Error("Error from before");
+  });
+
+  it("It hooks with errors", ()=>{
+    throw new Error("This will not throw")
+  });
+
+  after(()=>{
+
+    throw new Error("Error from after");
+  });
+
+});
+
+
+describe("Full app: 10 - beforeEach and afterEach hooks errors", ()=>{
+
+  beforeEach(()=>{
+
+    throw new Error("Error from beforeEach");
+  });
+
+  it("It hooks with errors", ()=>{
+    throw new Error("This will not throw")
+  });
+
+  afterEach(()=>{
+
+    throw new Error("Error from afterEach");
+  });
+
+});
+
