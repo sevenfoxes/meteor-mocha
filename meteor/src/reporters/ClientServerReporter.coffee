@@ -31,10 +31,20 @@ class ClientServerReporter
       @clientRunner.on "start", ->
         window.mochaIsRunning = true
 
-      @clientRunner.on "end", ->
+      @clientRunner.on "end", =>
         window.mochaIsRunning = false
         window.mochaIsDone = true
 
+        MochaRunner.emit("end client")
+        @clientTestsEnded = true
+        if @serverTestsEnded
+          MochaRunner.emit("end all")
+
+      @serverRunnerProxy.on 'end', ->
+        @serverTestsEnded = true
+        MochaRunner.emit("end server")
+        if @serverTestsEnded
+          MochaRunner.emit("end all")
 
     finally
       log.return()

@@ -2,12 +2,13 @@ utils                 = require("../../../lib/utils")
 Mocha                 = require("../../../lib/mocha")
 {Mongo}               = require("meteor/mongo")
 {Test, Suite}         = require("../../../lib/mocha")
+{EventEmitter}        = require("events")
 {ObjectLogger}        = require("meteor/practicalmeteor:loglevel")
 MeteorPublishReporter = require("./../reporters/MeteorPublishReporter")
 
 log = new ObjectLogger('MochaRunner', 'info')
 
-class MochaRunner
+class MochaRunner extends EventEmitter
 
   VERSION: "2.4.5_1"
   @instance: null
