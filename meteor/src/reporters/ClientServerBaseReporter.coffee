@@ -15,25 +15,24 @@
 
 class ClientServerBaseReporter
 
+  generateStats = ->
+
+
   constructor: (@clientRunner, @serverRunner, @options)->
     expect(@clientRunner).to.be.an 'object'
-#    expect(@serverRunner).to.be.an 'object'
+    expect(@serverRunner).to.be.an 'object'
     expect(@options).to.be.an 'object'
 
-    # In case we only have one runner, i.e MeteorPublishReporter
-    if not @serverRunner
-      @serverRunner = new EventEmitter()
-      @serverRunner.total = 0
-
-
-    @clientStats = { total: @clientRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0 }
-    @serverStats = { total: @serverRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0 }
-    @stats = { total: @serverRunner.total + @clientRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0 }
+    @clientStats = {total: @clientRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0}
+    @serverStats = {total: @serverRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0}
+    @stats = {total: @serverRunner.total + @clientRunner.total, suites: 0, tests: 0, passes: 0, pending: 0, failures: 0}
     @failures = []
 
     @clientRunner.stats = @clientStats
     @serverRunner.stats = @serverStats
 
+    @_addEventsToRunner("server")
+    @_addEventsToRunner("client")
 
   _addEventsToRunner: (where)->
 
@@ -42,6 +41,12 @@ class ClientServerBaseReporter
       @[where+"Stats"].start = start
       # The start time will be the first of the runners that started running
       @stats.start ?= start
+
+      #The total and other stats of the server runner are sent with the 'start' event,
+      #so we need to update the total of the stats
+      if where is 'server'
+        @stats.total = @serverRunner.total + @clientRunner.total
+        @serverStats.total = @serverRunner.total
 
 
     @["#{where}Runner"].on 'suite', (suite)=>
@@ -68,7 +73,6 @@ class ClientServerBaseReporter
     @["#{where}Runner"].on 'fail', (test, err)=>
       test.err ?= err
       @failures.push(test)
-      console.log("test", test)
 
       @stats.failures++;
       @[where+"Stats"].failures++;
