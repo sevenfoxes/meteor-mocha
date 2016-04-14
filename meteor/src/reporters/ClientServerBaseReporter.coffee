@@ -72,6 +72,11 @@ class ClientServerBaseReporter
 
     @["#{where}Runner"].on 'fail', (test, err)=>
       test.err ?= err
+      if where is 'server'
+        test.isServer = true
+      else
+        test.isClient = true
+
       @failures.push(test)
 
       @stats.failures++;
