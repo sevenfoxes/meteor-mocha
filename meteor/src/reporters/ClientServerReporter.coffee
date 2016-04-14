@@ -40,10 +40,10 @@ class ClientServerReporter
         if @serverTestsEnded
           MochaRunner.emit("end all")
 
-      @serverRunnerProxy.on 'end', ->
+      @serverRunnerProxy.on 'end', =>
         @serverTestsEnded = true
         MochaRunner.emit("end server")
-        if @serverTestsEnded
+        if @clientTestsEnded
           MochaRunner.emit("end all")
 
     finally
