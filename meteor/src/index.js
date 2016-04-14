@@ -15,9 +15,8 @@ let { before, after, beforeEach, afterEach,
       describe, xdescribe, it, xit, specify,
       xspecify, xcontext, context } = runnables;
 
-export {BaseReporter}
 export {MochaRunner}
-export {ClientServerBaseReporter}
+export {BaseReporter, ClientServerBaseReporter, HtmlReporter}
 export { before, after, beforeEach, afterEach,
 describe, xdescribe, it, xit, specify,
 xspecify, xcontext, context };
