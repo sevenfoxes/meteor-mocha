@@ -135,8 +135,7 @@ function HTML(runner, options) {
     test.body = test.body || test.fn.toString();
     // For type = 'test' its possible that the test failed due to multiple
     // done() calls. So report the issue here.
-    if (test.type === 'hook'
-      || test.type === 'test') {
+    if (test.type === 'hook') {
       runner.emit('test end', test);
     }
   });
@@ -162,6 +161,7 @@ function HTML(runner, options) {
     } else if (test.pending) {
       el = fragment('<li class="test pass pending"><h2>%e</h2></li>', test.title);
     } else {
+      console.log("failed!!!!");
       el = fragment('<li class="test fail"><h2>%e <a href="%e" class="replay">‣</a></h2></li>', test.title, self.testURL(test));
       var stackString; // Note: Includes leading newline
       var message = test.err.toString();
