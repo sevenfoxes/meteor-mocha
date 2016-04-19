@@ -10,7 +10,7 @@ log = new ObjectLogger('MochaRunner', 'info')
 
 class MochaRunner extends EventEmitter
 
-  VERSION: "2.4.5_2"
+  VERSION: "2.4.6-rc.1"
   @instance: null
 
   @get: ->
