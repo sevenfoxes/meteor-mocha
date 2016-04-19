@@ -1,7 +1,14 @@
-import {describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
+import {MochaRunner, describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
 import {expect} from "meteor/practicalmeteor:chai"
 import TestCollection from "./import/collections/TestCollection"
 
+if (Meteor.isClient) {
+  console.log("------------------------------------------------");
+  console.log("----------------PACKAGE VERSIONS----------------");
+  console.log("practicalmeteor:mocha:", MochaRunner.VERSION);
+  console.log("------------------------------------------------");
+  console.log("------------------------------------------------");
+}
 
 describe('1 - Array', function() {
   describe('1.1 - #indexOf()', function() {
