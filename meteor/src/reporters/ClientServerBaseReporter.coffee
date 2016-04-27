@@ -1,3 +1,4 @@
+MochaRunner = require("../lib/MochaRunner")
 #/**
 # * All other reporters generally
 # * inherit from this reporter, providing
@@ -28,6 +29,12 @@ class ClientServerBaseReporter
     @registerRunnerEvents("server")
     @registerRunnerEvents("client")
 
+    # Exposes global variables to indicate when tests are done.
+    MochaRunner.on "end all", =>
+      window.TEST_STATUS = {FAILURES: @stats.failures, DONE: true}
+      window.DONE = true
+      window.FAILURES = @stats.failures
+
   registerRunnerEvents: (where)->
 
     @["#{where}Runner"].on 'start', =>
@@ -38,9 +45,9 @@ class ClientServerBaseReporter
 
       #The total and other stats of the server runner are sent with the 'start' event,
       #so we need to update the total of the stats
-      if where is 'server'
-        @stats.total = @serverRunner.total + @clientRunner.total
-        @serverStats.total = @serverRunner.total
+      @clientStats.total = @clientRunner.total
+      @serverStats.total = @serverRunner.total
+      @stats.total = @clientStats.total + @serverStats.total
 
 
     @["#{where}Runner"].on 'suite', (suite)=>
