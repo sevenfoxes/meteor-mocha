@@ -1,5 +1,6 @@
-MochaRunner  = require("./../lib/MochaRunner")
-MirrorReporter = require('./MirrorReporter')
+{_}             = require("underscore")
+MochaRunner     = require("./../lib/MochaRunner")
+MirrorReporter  = require('./MirrorReporter')
 {ObjectLogger}  = require("meteor/practicalmeteor:loglevel")
 {EventEmitter}  = require("events")
 
@@ -23,7 +24,7 @@ class ClientServerReporter
 
       @reporter = new MochaRunner.reporter(@clientRunner, @serverRunnerProxy, @options)
 
-      MochaRunner.serverRunEvents.find().observe( {
+      MochaRunner.serverRunEvents.find().observe({
         added: _.bind(@onServerRunnerEvent, @)
       })
 
@@ -87,7 +88,7 @@ class ClientServerReporter
         @serverRunnerProxy.stats = doc.data
         @serverRunnerProxy.total = doc.data.total
 
-      @serverRunnerProxy.emit(doc.event, doc.data,  doc.data.err)
+      @serverRunnerProxy.emit(doc.event, doc.data, doc.data.err)
 
     catch ex
       log.error ex

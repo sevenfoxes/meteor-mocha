@@ -19,7 +19,8 @@ Npm.depends({
   "escape-string-regexp": "1.0.2",
   "supports-color": "1.2.0",
   "path": "0.12.7",
-  "meteor-node-stubs": "0.2.1"
+  "meteor-node-stubs": "0.2.1",
+  "underscore": "1.8.3"
 });
 
 Package.onUse(function (api) {
@@ -27,7 +28,6 @@ Package.onUse(function (api) {
 
   api.use('tmeasday:test-reporter-helpers@0.2.1');
   api.use('coffeescript');
-  api.use('underscore');
   api.use('reload');
   api.use('ddp');
   api.use('random');

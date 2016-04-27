@@ -1,3 +1,4 @@
+{_}            = require("underscore")
 BaseReporter   = require("./BaseReporter")
 {ObjectLogger} = require("meteor/practicalmeteor:loglevel")
 

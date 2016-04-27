@@ -1,3 +1,4 @@
+{_}                   = require("underscore")
 utils                 = require("../../../lib/utils")
 Mocha                 = require("../../../lib/mocha")
 {Mongo}               = require("meteor/mongo")
@@ -10,14 +11,15 @@ log = new ObjectLogger('MochaRunner', 'info')
 
 class MochaRunner extends EventEmitter
 
-  VERSION: "2.4.6-rc.1"
   @instance: null
 
   @get: ->
     MochaRunner.instance ?= new MochaRunner()
 
+  VERSION: "2.4.6-rc.1"
   serverRunEvents: null
   publishers: {}
+
 
   constructor: ->
     try
@@ -32,7 +34,6 @@ class MochaRunner extends EventEmitter
 
     finally
       log.return()
-
 
 
   publish: ->
@@ -129,6 +130,7 @@ class MochaRunner extends EventEmitter
 
   setReporter: (@reporter)->
 
+
   escapeGrep: (grep = '')->
     try
       log.enter("escapeGrep", grep)
@@ -137,6 +139,7 @@ class MochaRunner extends EventEmitter
       return new RegExp(grep)
     finally
       log.return()
+
 
   onServerRunSubscriptionReady: =>
     try

@@ -1,8 +1,4 @@
-{EventEmitter}  = require("events")
-
 #/**
-# * Initialize a new `Base` reporter.
-# *
 # * All other reporters generally
 # * inherit from this reporter, providing
 # * stats such as test duration, number
@@ -14,8 +10,6 @@
 #*/
 
 class ClientServerBaseReporter
-
-  generateStats = ->
 
 
   constructor: (@clientRunner, @serverRunner, @options)->
@@ -31,10 +25,10 @@ class ClientServerBaseReporter
     @clientRunner.stats = @clientStats
     @serverRunner.stats = @serverStats
 
-    @_addEventsToRunner("server")
-    @_addEventsToRunner("client")
+    @registerRunnerEvents("server")
+    @registerRunnerEvents("client")
 
-  _addEventsToRunner: (where)->
+  registerRunnerEvents: (where)->
 
     @["#{where}Runner"].on 'start', =>
       start = new Date()
@@ -72,11 +66,6 @@ class ClientServerBaseReporter
 
     @["#{where}Runner"].on 'fail', (test, err)=>
       test.err ?= err
-      if where is 'server'
-        test.isServer = true
-      else
-        test.isClient = true
-
       @failures.push(test)
 
       @stats.failures++;
