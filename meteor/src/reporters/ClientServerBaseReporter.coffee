@@ -29,7 +29,7 @@ class ClientServerBaseReporter
     @registerRunnerEvents("server")
     @registerRunnerEvents("client")
 
-    # Exposes global variables to indicate when tests are done.
+    # Exposes global variables to indicate when tests are done. For example spacejam use this global vars
     MochaRunner.on "end all", =>
       window.TEST_STATUS = {FAILURES: @stats.failures, DONE: true}
       window.DONE = true
@@ -42,9 +42,12 @@ class ClientServerBaseReporter
       @[where+"Stats"].start = start
       # The start time will be the first of the runners that started running
       @stats.start ?= start
-
-      #The total and other stats of the server runner are sent with the 'start' event,
-      #so we need to update the total of the stats
+      ###
+        The total and other stats of the server runner are sent with the 'start' event,
+        so we need to update the total of the stats.
+        Also when running in 'serial' mode (server test first and then client tests),
+        clientRunner.total is undefined because client starts running after server tests end.
+      ###
       @clientStats.total = @clientRunner.total
       @serverStats.total = @serverRunner.total
       @stats.total = @clientStats.total + @serverStats.total

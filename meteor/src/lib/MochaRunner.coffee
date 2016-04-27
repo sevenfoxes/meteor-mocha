@@ -16,7 +16,7 @@ class MochaRunner extends EventEmitter
   @get: ->
     MochaRunner.instance ?= new MochaRunner()
 
-  VERSION: "2.4.6-rc.2"
+  VERSION: "2.4.6-rc.3"
   serverRunEvents: null
   publishers: {}
 
