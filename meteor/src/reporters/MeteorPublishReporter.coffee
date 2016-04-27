@@ -175,12 +175,12 @@ class MeteorPublishReporter extends BaseReporter
 
   errorJSON: (err) =>
     return if not err
-    res = {}
-    Object.getOwnPropertyNames(err).forEach (key) ->
-      res[key] = err[key]
-      return
-    , err
-    res
+    ###
+      Only picking the defaults properties define by ECMAScript to avoid problems
+      with custom error that may have properties that can't be stringify such as functions.
+      See https://goo.gl/bsZh3B and https://goo.gl/AFp6KB
+    ###
+    return _.pick(err, ["name", "message", "stack"])
 
 
 
