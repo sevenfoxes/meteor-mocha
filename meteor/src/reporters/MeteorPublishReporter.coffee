@@ -111,6 +111,11 @@ class MeteorPublishReporter extends BaseReporter
         event: event
         data: data
       @publisher.added('mochaServerRunEvents', doc._id, doc)
+
+    catch ex
+      log.error "Can't send report data to client."
+      log.error "Error:", ex.message
+      log.error "Document:", doc
     finally
       log.return()
 
@@ -123,31 +128,23 @@ class MeteorPublishReporter extends BaseReporter
   # @return {Object}
   # @api private
   ###
-
-# TODO: Add test.server = true so we know it's a server test
   cleanTest: (test)->
     try
       log.enter("cleanTest", arguments)
-#      cleanTest = @clean(test)
-#      cleanTest._fullTitle =  test.fullTitle()
-      # So we can show the server side test code in the reporter
-      return {
-        title: test.title
+
+      properties = ["title", "type", "state","speed", "pending",
+        "duration", "async", "sync", "_timeout", "_slow", "body"]
+      return  _.extend(_.pick(test, properties),{
         _fullTitle: test.fullTitle()
-        type: test.type
-        state: test.state
         parent: @cleanSuite(test.parent)
-        speed: test.speed
-        pending: test.pending
-        duration: test.duration
-        async: test.async
-        sync: test.sync
-        _timeout: test._timeout
-        _slow: test._slow
-        fn: test.fn?.toString() # If the test or suite if skipped the fn is null
-        body: test.body # If the test or suite if skipped the fn is null
+        # So we can show the server side test code in the reporter. This property is null ff the test or suite is pending
+        fn: test.fn?.toString()
         err: @errorJSON(test.err)
-      }
+        isServer: true
+      })
+    catch ex
+      log.error(ex)
+
     finally
       log.return()
 
@@ -155,15 +152,12 @@ class MeteorPublishReporter extends BaseReporter
   cleanSuite: (suite)->
     try
       log.enter("cleanSuite", arguments)
-#      cleanSuite = @clean(suite)
-#      cleanSuite._fullTitle =  suite.fullTitle()
-#      console.log(cleanSuite)
-      return {
-      title: suite.title
-      _fullTitle: suite.fullTitle()
-      root: suite.root
-      pending: suite.pending
-      }
+      return _.extend(_.pick(suite, ["title", "root", "pending"]),{
+        _fullTitle: suite.fullTitle()
+        isServer: true
+      })
+    catch ex
+      log.error(ex)
     finally
       log.return()
 
