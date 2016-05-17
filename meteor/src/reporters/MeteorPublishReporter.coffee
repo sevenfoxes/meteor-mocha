@@ -114,7 +114,7 @@ class MeteorPublishReporter extends BaseReporter
 
     catch ex
       log.error "Can't send report data to client."
-      log.error "Error:", ex.message
+      log.error "Error:", (ex.stack || ex.message)
       log.error "Document:", doc
     finally
       log.return()
