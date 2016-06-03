@@ -21,31 +21,31 @@ describe('Globals', function() {
     return expect(false).to.be["true"];
   });
 
-  specify("it works", function () {
-    expect(true).to.be.true;
-  });
+  // specify("it works", function () {
+  //   expect(true).to.be.true;
+  // });
+  //
+  // xspecify("Skip: This won't run (xspecify)", function () {
+  //   throw new Error("This won't run")
+  // })
 
-  xspecify("Skip: This won't run (xspecify)", function () {
-    throw new Error("This won't run")
-  })
-
-  xdescribe('Skip suite (xdescribe)', function() {
-    return it("this won't run", function() {
-      throw new Error("This is an error");
-    });
-  });
-
-  context("Context test", function () {
-    it("it works", function () {
-      expect(true).to.be.true;
-    });
-  });
-
-  xcontext("Skip suite (xcontext)", function () {
-
-    it("This won't run", function () {
-      throw new Error("This won't run")
-    })
-  })
+  // xdescribe('Skip suite (xdescribe)', function() {
+  //   return it("this won't run", function() {
+  //     throw new Error("This is an error");
+  //   });
+  // });
+  //
+  // context("Context test", function () {
+  //   it("it works", function () {
+  //     expect(true).to.be.true;
+  //   });
+  // });
+  //
+  // xcontext("Skip suite (xcontext)", function () {
+  //
+  //   it("This won't run", function () {
+  //     throw new Error("This won't run")
+  //   })
+  // })
 
 });

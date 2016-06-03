@@ -1,6 +1,6 @@
 import {meteorInstall} from "meteor/modules"
 
-
+process.browser = true;
 // For some reason meteor-node-stubs is not working, TODO create an issue.
 // Here we are creating stubs packages to be availabe on the client side. This must be called before mocha require
 // See an example from https://goo.gl/us9YVR

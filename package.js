@@ -3,7 +3,7 @@ Package.describe({
   name: "practicalmeteor:mocha",
   summary: "Write package tests with mocha and run them in the browser or from the command line with spacejam.",
   git: "https://github.com/practicalmeteor/meteor-mocha.git",
-  version: '2.4.5_2',
+  version: '2.4.7-rc.1',
   testOnly: true
 });
 
@@ -20,7 +20,8 @@ Npm.depends({
   "supports-color": "1.2.0",
   "path": "0.12.7",
   "meteor-node-stubs": "0.2.1",
-  "underscore": "1.8.3"
+  "underscore": "1.8.3",
+  mocha: '2.4.5'
 });
 
 Package.onUse(function (api) {
@@ -41,16 +42,17 @@ Package.onUse(function (api) {
   api.use(['blaze', 'templating', 'spacebars', 'tracker'], 'client');
 
   api.use([
+    'practicalmeteor:mocha-core@1.0.0',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
     'practicalmeteor:sinon@1.14.1_2'
   ]);
 
   api.imply([
+    'practicalmeteor:mocha-core@1.0.0',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
-    'practicalmeteor:sinon@1.14.1_2',
-    'practicalmeteor:mocha-core@0.1.4'
+    'practicalmeteor:sinon@1.14.1_2'
   ]);
 
   // So meteor-web-driver will be available from the command line
