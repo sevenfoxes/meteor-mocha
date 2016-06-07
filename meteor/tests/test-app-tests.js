@@ -65,9 +65,6 @@ setInterval(function () {
     console.log("regex.hash.match:", html.match(regex).length);
     html = html.replace(regex, "hash=a");
 
-    fs.write("/home/juan/packages/meteor-mocha/mocha/meteor/test-app/../tests/compare2.html", html, 'w');
-    fs.write(system.env.TEST_FILE, compare, 'w');
-    // console.log("html:", html);
     return phantom.exit( !(compare == html));
   }
 }, 500);
