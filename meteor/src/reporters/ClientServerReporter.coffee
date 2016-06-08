@@ -19,7 +19,7 @@ class ClientServerReporter
         @runTestsSerially(@clientRunner, @serverRunnerProxy)
 
       if not MochaRunner.reporter
-        log.error("Missing reporter to run tests. Use MochaRunner.setReporter(reporter) to set one.")
+        log.info("Missing reporter to run tests. Use MochaRunner.setReporter(reporter) to set one.")
         return
 
       @reporter = new MochaRunner.reporter(@clientRunner, @serverRunnerProxy, @options)
