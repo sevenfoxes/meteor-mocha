@@ -1,4 +1,3 @@
-import "meteor-node-stubs"
 import { mochaInstance } from "meteor/practicalmeteor:mocha-core"
 import setupMochaClient from "./setupMochaClient"
 
