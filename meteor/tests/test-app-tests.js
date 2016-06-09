@@ -50,22 +50,19 @@ setInterval(function () {
     });
     // Remove changing strings
     var regex = new RegExp("/local\\?", "g");
-    console.log("regex.local:", regex);
-    console.log("regex.local.match:", html.match(regex).length);
     html = html.replace(regex, "/?");
 
     regex = new RegExp("http://localhost:3000", "g");
-    console.log("regex.localhost:", regex);
-    // console.log("regex.localhost.match:", compare.match(regex).length);
     compare = compare.replace(regex, system.env.ROOT_URL);
-    console.log("regex.localhost.match:", compare.match(regex) && compare.match(regex).length);
 
     regex = new RegExp("hash=[^\\n|^<]*", "g");
-    console.log("regex.hash:", regex);
-    console.log("regex.hash.match:", html.match(regex).length);
     html = html.replace(regex, "hash=a");
 
-    return phantom.exit( !(compare == html));
+    var equal = (compare == html);
+    if (!equal){
+      fs.write(system.env.TEST_FILE+".compare", html, 'w');
+    }
+    return phantom.exit( !equal);
   }
 }, 500);
 
