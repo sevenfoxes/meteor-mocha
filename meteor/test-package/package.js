@@ -30,5 +30,6 @@ Package.onTest(function (api) {
   ]);
 
   api.addFiles('mocha-tests.js');
+  api.addFiles('server-tests.js', 'server');
   api.addFiles('mocha-globals-tests.js');
 });
