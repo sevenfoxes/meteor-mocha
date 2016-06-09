@@ -1,4 +1,4 @@
-import {runnables}  from "./setup"
+import "./setup"
 import MochaRunner  from "./lib/MochaRunner"
 import BaseReporter from "./reporters/BaseReporter"
 import ClientServerBaseReporter from "./reporters/ClientServerBaseReporter"
@@ -11,12 +11,12 @@ export const runTests = () => {
   MochaRunner.setReporter(HtmlReporter)
 };
 
-// let { before, after, beforeEach, afterEach,
-//       describe, xdescribe, it, xit, specify,
-//       xspecify, xcontext, context } = runnables;
+let { before, after, beforeEach, afterEach,
+      describe, xdescribe, it, xit, specify,
+      xspecify, xcontext, context } = global;
 
 export {MochaRunner}
 export {BaseReporter, ClientServerBaseReporter, HtmlReporter}
-// export { before, after, beforeEach, afterEach,
-// describe, xdescribe, it, xit, specify,
-// xspecify, xcontext, context };
+export { before, after, beforeEach, afterEach,
+describe, xdescribe, it, xit, specify,
+xspecify, xcontext, context };

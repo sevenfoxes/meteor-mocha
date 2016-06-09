@@ -1,5 +1,4 @@
-// import {MochaRunner, describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
-import {MochaRunner} from "meteor/practicalmeteor:mocha"
+import {MochaRunner, describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
 import {expect} from "meteor/practicalmeteor:chai"
 import TestCollection from "./import/collections/TestCollection"
 
@@ -27,27 +26,27 @@ describe('1 - Array', function() {
 
   describe("Specify", function () {
 
-    // specify("it works", function () {
-    //   expect(true).to.be.true;
-    // });
-    //
-    // xspecify("Skip: This won't run", function () {
-    //   throw new Error("This won't run")
-    // })
+    specify("it works", function () {
+      expect(true).to.be.true;
+    });
+
+    xspecify("Skip: This won't run", function () {
+      throw new Error("This won't run")
+    })
   })
 
-  // context("Context test", function () {
-  //   it("it works", function () {
-  //     expect(true).to.be.true;
-  //   });
-  // });
-  //
-  // xcontext("Skip suite (xcontext)", function () {
-  //
-  //   it("This won't run", function () {
-  //     throw new Error("This won't run")
-  //   })
-  // })
+  context("Context test", function () {
+    it("it works", function () {
+      expect(true).to.be.true;
+    });
+  });
+
+  xcontext("Skip suite (xcontext)", function () {
+
+    it("This won't run", function () {
+      throw new Error("This won't run")
+    })
+  })
 
 });
 

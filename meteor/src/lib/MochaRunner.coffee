@@ -1,7 +1,9 @@
 {_}                   = require("underscore")
+Test                  = require("mocha/lib/test")
+Suite                 = require("mocha/lib/suite")
 utils                 = require("mocha/lib/utils")
 {Mongo}               = require("meteor/mongo")
-{Test, Suite}         = require("mocha/lib/mocha")
+{Mocha}               = require("meteor/practicalmeteor:mocha-core")
 {EventEmitter}        = require("events")
 {ObjectLogger}        = require("meteor/practicalmeteor:loglevel")
 MeteorPublishReporter = require("./../reporters/MeteorPublishReporter")
@@ -65,7 +67,6 @@ class MochaRunner extends EventEmitter
       expect(runId).to.be.a("string")
       expect(@publishers[runId], "publisher").to.be.an("object")
       expect(Meteor.isServer).to.be.true
-      Mocha = require("mocha")
       mochaRunner = new Mocha()
       @_addTestsToMochaRunner(mocha.suite, mochaRunner.suite)
 
