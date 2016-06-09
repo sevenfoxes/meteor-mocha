@@ -6,8 +6,7 @@ log = new ObjectLogger('MeteorPublishReporter', 'info')
 
 class MeteorPublishReporter extends BaseReporter
 
-  # TODO: Change this to use Meteor.bindEnvironment
-  @publisher: null
+  @publisher: null 
 
   constructor: (runner, options)->
     try
