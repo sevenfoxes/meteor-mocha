@@ -32,6 +32,9 @@ class MeteorPublishReporter extends BaseReporter
       @stopped = false
       @sequence = 0
 
+      # Make sure we always run within a Fiber
+      @added = Meteor.bindEnvironment(@added, null, @)
+
       # Specify how to run tests 'serial' or 'parallel'
       # Running in 'serial' will start server tests first and then client tests
       @added 'run order', process.env.MOCHA_RUN_ORDER || 'parallel'
@@ -50,6 +53,7 @@ class MeteorPublishReporter extends BaseReporter
           log.enter 'onSuite', arguments
 #          log.info "suite:", suite.title
 #          @added 'suite', {title: suite.title, _fullTitle: suite.fullTitle(), root: suite.root}
+
           @added 'suite', @cleanSuite(suite)
         finally
           log.return()
@@ -111,7 +115,6 @@ class MeteorPublishReporter extends BaseReporter
         event: event
         data: data
       @publisher.added('mochaServerRunEvents', doc._id, doc)
-
     catch ex
       log.error "Can't send report data to client."
       log.error "Error:", (ex.stack || ex.message)
