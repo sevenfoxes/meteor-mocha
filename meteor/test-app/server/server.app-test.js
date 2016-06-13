@@ -1,15 +1,4 @@
-import {describe, it} from "meteor/practicalmeteor:mocha"
+import addTests from "./server-test"
 
-import {expect} from "meteor/practicalmeteor:chai"
+addTests("Full app: ");
 
-describe("Full app: Server Test", function(){
-
-  it("this test is server side only", function(){
-    expect(Meteor.isServer).to.be.true
-    expect(Meteor.isClient).to.be.false
-  });
-
-  it("require('fs) === to Npm.require('fs')", function() {
-    expect(require('fs')).to.equal(Npm.require('fs'))
-  })
-});

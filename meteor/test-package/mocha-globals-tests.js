@@ -27,7 +27,7 @@ describe('Globals', function() {
 
   xspecify("Skip: This won't run (xspecify)", function () {
     throw new Error("This won't run")
-  })
+  });
 
   xdescribe('Skip suite (xdescribe)', function() {
     return it("this won't run", function() {

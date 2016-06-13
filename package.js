@@ -42,14 +42,14 @@ Package.onUse(function (api) {
   api.use(['blaze', 'templating', 'spacebars', 'tracker'], 'client');
 
   api.use([
-    'practicalmeteor:mocha-core@1.0.0-rc.2',
+    'practicalmeteor:mocha-core@1.0.0-rc.3',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
     'practicalmeteor:sinon@1.14.1_2'
   ]);
 
   api.imply([
-    'practicalmeteor:mocha-core@1.0.0-rc.2',
+    'practicalmeteor:mocha-core@1.0.0-rc.3',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
     'practicalmeteor:sinon@1.14.1_2'
