@@ -69,6 +69,10 @@ setInterval(function () {
     regex = new RegExp("hash=[^\\n|^<]*", "g");
     html = html.replace(regex, "hash=a");
 
+    regex = new RegExp("meteor-test-[^\/]*", "g");
+    html = html.replace(regex, "meteor-test-123");
+
+
     var equal = (compare == html);
     if (!equal){
       fs.write(system.env.TEST_FILE+".compare", html, 'w');
