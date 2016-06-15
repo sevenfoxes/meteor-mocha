@@ -10,6 +10,9 @@ spacejam test --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test-app-tests.
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
@@ -20,6 +23,9 @@ spacejam test --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test-app-tests.
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
@@ -31,6 +37,9 @@ spacejam test --full-app --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
@@ -41,6 +50,9 @@ spacejam test --full-app --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
@@ -51,6 +63,9 @@ spacejam test-packages --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test-a
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
@@ -61,6 +76,9 @@ spacejam test-packages --phantomjs-script "$TRAVIS_BUILD_DIR/meteor/tests/test-a
 LAST_EXIT_STATUS="$?"
 if [ "$LAST_EXIT_STATUS" -ne "0" ]
     then
+    echo "Test failed printing compare file."
+    cat "$TEST_FILE.compare"
+    echo "End compare file."
     EXIT_STATUS="$LAST_EXIT_STATUS"
 fi
 
