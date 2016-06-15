@@ -108,7 +108,6 @@ timeslice@http://localhost:4096/packages/practicalmeteor_mocha-core.js?hash=a</p
       Meteor.setTimeout(function () {                                                                              // 35
         done();                                                                                                    // 36
       }, 1000);                                                                                                    // 37</code></pre></li><li class="test fail fast"><h2>should throw <a href="/?grep=2%20-%20Async%20test%20should%20throw" class="replay">‣</a></h2><pre class="error">Error: done() invoked with non-Error: I'm throwing
-    at /tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:347:21
     at both-test.js:42:9
     at [object Object]._.extend.withValue (packages/meteor/dynamics_nodejs.js:56:1)
     at packages/meteor/timers.js:6:1
@@ -126,17 +125,13 @@ timeslice@http://localhost:4096/packages/practicalmeteor_mocha-core.js?hash=a</p
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (both-test.js:92:7)
     at run (packages/practicalmeteor:mocha-core/server.js:32:29)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)
-    at callFnAsync (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:338:8)
-    at Test.Runnable.run (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:290:7)</pre><pre style="display: none;"><code>// 91
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 91
       expect(false).to.be["true"];                                                                                 // 92</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=6%20-%20All%20async%20test%20suite">6 - All async test suite</a></h1><ul><li class="test fail fast"><h2>passing <a href="/?grep=6%20-%20All%20async%20test%20suite%20passing" class="replay">‣</a></h2><pre class="error">Error: expected undefined to be true
     at Assertion.&lt;anonymous&gt; (packages/practicalmeteor_chai.js:1236:10)
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (both-test.js:129:7)
     at run (packages/practicalmeteor:mocha-core/server.js:54:16)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)
-    at callFnAsync (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:338:8)
-    at Test.Runnable.run (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:290:7)</pre><pre style="display: none;"><code>// 128
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 128
       expect(this.keepContext).to.be["true"];                                                                      // 129
       Meteor.setTimeout(function () {                                                                              // 130
         done();                                                                                                    // 131
@@ -172,9 +167,9 @@ timeslice@http://localhost:4096/packages/practicalmeteor_mocha-core.js?hash=a</p
         resolve(true);                                                                                             // 223
       });                                                                                                          // 224</code></pre></li><li class="test fail fast"><h2>Handle promises errors <a href="/?grep=13%20-%20Promises%20Handle%20promises%20errors" class="replay">‣</a></h2><pre class="error">Error: fails-just-fine
     at both-test.js:229:16
-    at tryCallTwo (/home/juan/.meteor/packages/promise/.0.7.2.45ddr4++os+web.browser+web.cordova/npm/node_modules/promise/lib/core.js:45:5)
-    at doResolve (/home/juan/.meteor/packages/promise/.0.7.2.45ddr4++os+web.browser+web.cordova/npm/node_modules/promise/lib/core.js:200:13)
-    at new Promise (/home/juan/.meteor/packages/promise/.0.7.2.45ddr4++os+web.browser+web.cordova/npm/node_modules/promise/lib/core.js:66:3)
+    at tryCallTwo (/home/test/.meteor/promise/core.js:1:1)
+    at doResolve (/home/test/.meteor/promise/core.js:1:1)
+    at new Promise (/home/test/.meteor/promise/core.js:1:1)
     at Test.&lt;anonymous&gt; (both-test.js:228:14)
     at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 227
       return new Promise(function (resolve, reject) {                                                              // 228
@@ -185,9 +180,7 @@ timeslice@http://localhost:4096/packages/practicalmeteor_mocha-core.js?hash=a</p
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (globals-test.js:23:14)
     at run (packages/practicalmeteor:mocha-core/server.js:32:29)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)
-    at callFnAsync (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:338:8)
-    at Test.Runnable.run (/tmp/meteor-test-123/.meteor/local/isopacks/practicalmeteor_mocha/npm/node_modules1/mocha/lib/runnable.js:290:7)</pre><pre style="display: none;"><code>// 22
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 22
       return expect(false).to.be["true"];                                                                          // 23</code></pre></li><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=Globals%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 26
       expect(true).to.be["true"];                                                                                  // 27</code></pre></li><li class="test pass pending fast"><h2>Skip: This won't run (xspecify)</h2></li><li class="suite"><h1><a href="/?grep=Globals%20Skip%20suite%20%5C(xdescribe%5C)">Skip suite (xdescribe)</a></h1><ul><li class="test pass pending fast"><h2>this won't run</h2></li></ul></li><li class="suite"><h1><a href="/?grep=Globals%20Context%20test">Context test</a></h1><ul><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=Globals%20Context%20test%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 41
         expect(true).to.be["true"];                                                                                // 42</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=Globals%20Skip%20suite%20%5C(xcontext%5C)">Skip suite (xcontext)</a></h1><ul><li class="test pass pending fast"><h2>This won't run</h2></li></ul></li></ul></li></ul></div> </div> </div>

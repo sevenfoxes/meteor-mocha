@@ -72,6 +72,12 @@ setInterval(function () {
     regex = new RegExp("meteor-test-[^\/]*", "g");
     html = html.replace(regex, "meteor-test-123");
 
+    regex = new RegExp("meteor-test-[^\/]*", "g");
+    html = html.replace(regex, "meteor-test-123");
+
+    regex = /\/home\/.*\/.meteor\/.*\)/g
+    html = html.replace(regex, "/home/test/.meteor/promise/core.js:1:1)");
+
 
     var equal = (compare == html);
     if (!equal){
