@@ -46,6 +46,17 @@ setInterval(function () {
       for(var i = 0; i < duration.length; i++){
         duration[i].innerHTML = "0";
       }
+      // Cleanup slow fast medium classes
+      var tests = document.querySelectorAll(".test");
+      for (var i = 0; i < tests.length; i++) {
+        var test = tests[i];
+        test.classList.remove("fast");
+        test.classList.remove("medium");
+        test.classList.remove("slow");
+
+        test.classList.add("fast")
+      }
+ 
       return document.querySelector(".mocha-wrapper").innerHTML;
     });
     // Remove changing strings
