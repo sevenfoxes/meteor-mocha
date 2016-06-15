@@ -25,10 +25,6 @@ class MeteorPublishReporter extends BaseReporter
       expect(@publisher.added, '@publisher.added').to.be.a('function')
       expect(@publisher.onStop, '@publisher.onStop').to.be.a('function')
 
-
-      @publisher.onStop =>
-        @stopped = true
-      @stopped = false
       @sequence = 0
 
       # Make sure we always run within a Fiber
@@ -107,7 +103,6 @@ class MeteorPublishReporter extends BaseReporter
     try
       log.enter 'added', arguments
 #      log.info event, data
-      return if @stopped is true
       @sequence++
       doc =
         _id: "#{@sequence}"

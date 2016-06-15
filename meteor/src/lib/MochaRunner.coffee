@@ -47,6 +47,10 @@ class MochaRunner extends EventEmitter
           check(runId, String);
           expect(@ready).to.be.a('function')
           self.publishers[runId] ?= @
+
+          @onStop =>
+            delete self.publishers[runId]
+
           @ready()
           # You can't return any other value but a Cursor, otherwise it will throw an exception
           return undefined
@@ -72,7 +76,12 @@ class MochaRunner extends EventEmitter
 
       mochaRunner.reporter(MeteorPublishReporter, {
         grep: @escapeGrep(grep)
-        publisher: @publishers[runId]
+        publisher:
+          added: => @publishers[runId]?.added.apply(@publishers[runId], arguments)
+          changed: => @publishers[runId]?.changed.apply(@publishers[runId], arguments)
+          removed: => @publishers[runId]?.removed.apply(@publishers[runId], arguments)
+          ready: => @publishers[runId]?.ready.apply(@publishers[runId], arguments)
+          onStop: => @publishers[runId]?.onStop.apply(@publishers[runId], arguments)
       })
 
       log.info "Starting server side tests with run id #{runId}"

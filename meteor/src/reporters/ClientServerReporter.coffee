@@ -24,9 +24,14 @@ class ClientServerReporter
 
       @reporter = new MochaRunner.reporter(@clientRunner, @serverRunnerProxy, @options)
 
-      MochaRunner.serverRunEvents.find().observe({
-        added: _.bind(@onServerRunnerEvent, @)
-      })
+      # we use nonreactive here because this constructor is called in an
+      # autorun, and we don't want our autorun to be cancelled when the
+      # parent is cancelled
+      Tracker.nonreactive =>
+        Tracker.autorun =>
+          isConnected = Meteor.connection.status().connected
+          if isConnected
+            @initObserver()
 
       # Exposes global states of tests
       @clientRunner.on "start", ->
@@ -50,6 +55,13 @@ class ClientServerReporter
     finally
       log.return()
 
+  initObserver: () =>
+    if @observer
+      @observer.stop()
+
+    @observer = MochaRunner.serverRunEvents.find().observe( {
+      added: _.bind(@onServerRunnerEvent, @)
+    })
 
   runTestsSerially: (clientRunner, serverRunnerProxy)=>
     try
