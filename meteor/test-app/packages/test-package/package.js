@@ -17,6 +17,8 @@ Package.onUse(function (api) {
     "ecmascript"
   ]);
 
+  api.mainModule("index.js")
+
 });
 
 Package.onTest(function (api) {
@@ -29,7 +31,8 @@ Package.onTest(function (api) {
     'test-package'
   ]);
 
-  api.addFiles('mocha-tests.js');
-  api.addFiles('server-tests.js', 'server');
-  api.addFiles('mocha-globals-tests.js');
+  api.addFiles('tests/server.test.js', 'server');
+  api.addFiles('tests/client.test.js', 'client');
+  api.addFiles('tests/both.test.js');
+  api.addFiles('tests/globals.test.js');
 });

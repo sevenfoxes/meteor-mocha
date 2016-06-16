@@ -1,8 +1,8 @@
 import {MochaRunner, describe, it, before, after, beforeEach, afterEach, xdescribe, xit, specify, xspecify, context, xcontext} from "meteor/practicalmeteor:mocha"
 import {expect} from "meteor/practicalmeteor:chai"
-import TestCollection from "./import/collections/TestCollection"
+import TestCollection from "./TestCollection"
 
-export default (Where = "")=> {
+export default ()=> {
 
 
   console.log("------------------------------------------------");
@@ -12,7 +12,7 @@ export default (Where = "")=> {
   console.log("------------------------------------------------");
 
 
-  describe(Where + '1 - Array', function() {
+  describe('1 - Array', function() {
 
     describe('1.1 - #indexOf()', function() {
       return it('should return -1 when the value is not present', function() {
@@ -29,7 +29,7 @@ export default (Where = "")=> {
 
   });
 
-  describe(Where + '2 - Async test', function() {
+  describe('2 - Async test', function() {
 
     it('should pass', function(done) {
       Meteor.setTimeout(function() {
@@ -45,7 +45,7 @@ export default (Where = "")=> {
 
   });
 
-  describe(Where + '3 - Skipped test', function() {
+  describe('3 - Skipped test', function() {
 
     it.skip('3.1 - should skip test', function(done) {
       Meteor.setTimeout(function() {
@@ -56,7 +56,7 @@ export default (Where = "")=> {
     it('3.2 - should skip test');
   });
 
-  describe(Where + '4 - Uncaught exception suite', function() {
+  describe('4 - Uncaught exception suite', function() {
 
     it('should fail due to an uncaught exception', function(done) {
       setTimeout(function() {
@@ -66,7 +66,7 @@ export default (Where = "")=> {
     });
   });
 
-  describe(Where + '5 - All sync test suite', function() {
+  describe('5 - All sync test suite', function() {
 
     before(function() {
       console.log('before');
@@ -93,7 +93,7 @@ export default (Where = "")=> {
     });
   });
 
-  describe(Where + '6 - All async test suite', function() {
+  describe('6 - All async test suite', function() {
 
     before(function(done) {
       this.keepContext = true;
@@ -139,7 +139,7 @@ export default (Where = "")=> {
     });
   });
 
-  describe(Where + '7 - implicit wait', function() {
+  describe('7 - implicit wait', function() {
 
     it('during findOne', function() {
       var doc;
@@ -150,13 +150,13 @@ export default (Where = "")=> {
 
   });
 
-  describe.skip(Where + '8 - skip suite', function() {
+  describe.skip('8 - skip suite', function() {
     it("this won't run", function() {
       throw new Error("This is an error");
     });
   });
 
-  describe(Where + "9 -  before and after hooks errors", ()=> {
+  describe("9 -  before and after hooks errors", ()=> {
 
     before(()=> {
       throw new Error("Error from before");
@@ -172,7 +172,7 @@ export default (Where = "")=> {
 
   });
 
-  describe(Where + "10 - beforeEach and afterEach hooks errors", ()=> {
+  describe("10 - beforeEach and afterEach hooks errors", ()=> {
 
     beforeEach(()=> {
       throw new Error("Error from beforeEach");
@@ -189,7 +189,7 @@ export default (Where = "")=> {
 
   });
 
-  describe(Where + "11 - Specify", function() {
+  describe("11 - Specify", function() {
 
     specify("it works", function() {
       expect(true).to.be.true;
@@ -201,13 +201,13 @@ export default (Where = "")=> {
 
   });
 
-  context(Where + "12 - Context test", function() {
+  context("12 - Context test", function() {
     it("it works", function() {
       expect(true).to.be.true;
     });
   });
 
-  xcontext(Where + "12 - Skip suite (xcontext)", function() {
+  xcontext("12 - Skip suite (xcontext)", function() {
 
     it("This won't run", function() {
       throw new Error("This won't run")
@@ -215,7 +215,7 @@ export default (Where = "")=> {
 
   });
 
-  describe(Where + "13 - Promises", ()=> {
+  describe("13 - Promises", ()=> {
 
     it("Handle promises", ()=> {
       return new Promise((resolve, reject) => {

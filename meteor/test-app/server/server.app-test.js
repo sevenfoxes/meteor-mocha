@@ -1,4 +1,3 @@
-import addTests from "./server-test"
+import {addServerTests} from "meteor/test-package"
 
-addTests("Full app: ");
-
+addServerTests();

@@ -1,4 +1,3 @@
-import {expect} from "meteor/practicalmeteor:chai"
-import addTests from "./globals-test"
+import {addGlobalsTests as addTests} from "meteor/test-package"
 
 addTests();

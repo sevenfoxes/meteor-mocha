@@ -1,5 +1,4 @@
 allow-deny@1.0.5
-autopublish@1.0.7
 autoupdate@1.2.10
 babel-compiler@6.8.0
 babel-runtime@0.1.9
@@ -67,6 +66,7 @@ standard-minifier-css@1.0.7
 standard-minifier-js@1.0.7
 templating@1.1.10
 templating-tools@1.0.4
+test-package@0.0.0
 tmeasday:test-reporter-helpers@0.2.1
 tracker@1.0.14
 ui@1.0.11

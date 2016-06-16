@@ -1,3 +1,3 @@
-import addTests from "./both-test"
+import {addBothTests as addTests} from "meteor/test-package"
 
-addTests("Full app: ");
+addTests();

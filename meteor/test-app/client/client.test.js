@@ -1,3 +1,3 @@
-import addTests from "./client-test"
+import {addClientTests as addTests} from "meteor/test-package"
 
 addTests();
