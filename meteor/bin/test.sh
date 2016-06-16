@@ -23,7 +23,7 @@ function verifyStatus {
 }
 
 cd $REPO_HOME
-#spacejam test-packages ./
+spacejam test-packages ./
 EXIT_STATUS="$?"
 
 cd "$REPO_HOME/meteor/test-app"
