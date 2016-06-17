@@ -1,8 +1,8 @@
 import {expect} from "meteor/practicalmeteor:chai"
 
-export default (Where = "") =>{
+export default () =>{
 
-  describe(Where + 'Globals', function() {
+  describe('Globals', function() {
 
     before(function() {
       return console.log('before');
