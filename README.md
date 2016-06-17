@@ -89,6 +89,10 @@ This package, in combination with spacejam, will support writing and using your 
 
 If someone would like to get this going, we'll be happy to provide how-to instructions. 
 
+## Changelog
+
+See [CHANGELOG](https://github.com/practicalmeteor/meteor-mocha/blob/meteor/meteor/CHANGELOG.md)
+
 ## License
 
 [mocha](https://github.com/mochajs/mocha) - [MIT](https://github.com/mochajs/mocha/blob/master/LICENSE)
