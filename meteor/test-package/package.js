@@ -24,11 +24,12 @@ Package.onTest(function (api) {
     'coffeescript',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'practicalmeteor:mocha@2.4.5_1',
+    'practicalmeteor:mocha@=2.4.5_3',
     'ecmascript',
     'test-package'
   ]);
 
   api.addFiles('mocha-tests.js');
+  api.addFiles('server-tests.js', 'server');
   api.addFiles('mocha-globals-tests.js');
 });

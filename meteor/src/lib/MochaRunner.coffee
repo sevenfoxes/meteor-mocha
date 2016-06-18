@@ -1,22 +1,26 @@
-utils                 = require("../../../lib/utils")
-Mocha                 = require("../../../lib/mocha")
+{_}                   = require("underscore")
+Test                  = require("mocha/lib/test")
+Suite                 = require("mocha/lib/suite")
+utils                 = require("mocha/lib/utils")
 {Mongo}               = require("meteor/mongo")
-{Test, Suite}         = require("../../../lib/mocha")
+{Mocha}               = require("meteor/practicalmeteor:mocha-core")
+{EventEmitter}        = require("events")
 {ObjectLogger}        = require("meteor/practicalmeteor:loglevel")
 MeteorPublishReporter = require("./../reporters/MeteorPublishReporter")
 
 log = new ObjectLogger('MochaRunner', 'info')
 
-class MochaRunner
+class MochaRunner extends EventEmitter
 
-  VERSION: "2.4.5_1"
   @instance: null
 
   @get: ->
     MochaRunner.instance ?= new MochaRunner()
 
+  VERSION: "2.4.5_3"
   serverRunEvents: null
   publishers: {}
+
 
   constructor: ->
     try
@@ -31,7 +35,6 @@ class MochaRunner
 
     finally
       log.return()
-
 
 
   publish: ->
@@ -64,7 +67,6 @@ class MochaRunner
       expect(runId).to.be.a("string")
       expect(@publishers[runId], "publisher").to.be.an("object")
       expect(Meteor.isServer).to.be.true
-
       mochaRunner = new Mocha()
       @_addTestsToMochaRunner(mocha.suite, mochaRunner.suite)
 
@@ -128,6 +130,7 @@ class MochaRunner
 
   setReporter: (@reporter)->
 
+
   escapeGrep: (grep = '')->
     try
       log.enter("escapeGrep", grep)
@@ -136,6 +139,7 @@ class MochaRunner
       return new RegExp(grep)
     finally
       log.return()
+
 
   onServerRunSubscriptionReady: =>
     try
