@@ -12,7 +12,7 @@ function createCompareFile {
       if [ -n "${TRAVIS_BUILD_DIR}" ]
         then
         echo "Test failed printing compare file."
-#        cat "$TEST_FILE.compare"
+        cat "$TEST_FILE.compare"
         echo "End compare file."
       else
         cat "$TEST_FILE.compare" >> "$(dirname $TEST_FILE)/$3.compare.html"
