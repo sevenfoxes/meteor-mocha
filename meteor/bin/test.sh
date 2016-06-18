@@ -1,7 +1,8 @@
 #!/bin/bash -x
 
 cd $REPO_HOME
-#spacejam test-packages ./
+spacejam test-packages ./
+
 EXIT_STATUS="$?"
 export TEST_FILE="$REPO_HOME/meteor/tests/test-app.html"
 function createCompareFile {

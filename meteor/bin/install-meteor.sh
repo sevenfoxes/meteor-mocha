@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -ex
 
 if [ ! -e "$HOME/.meteor/meteor" ]; then
   curl https://install.meteor.com/ | sh
