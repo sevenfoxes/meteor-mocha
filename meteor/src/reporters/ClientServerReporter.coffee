@@ -24,10 +24,6 @@ class ClientServerReporter
 
       @reporter = new MochaRunner.reporter(@clientRunner, @serverRunnerProxy, @options)
 
-      MochaRunner.serverRunEvents.find().observe({
-        added: _.bind(@onServerRunnerEvent, @)
-      })
-
       # Exposes global states of tests
       @clientRunner.on "start", ->
         window.mochaIsRunning = true
@@ -46,6 +42,10 @@ class ClientServerReporter
         MochaRunner.emit("end server")
         if @clientTestsEnded
           MochaRunner.emit("end all")
+
+      MochaRunner.serverRunEvents.find().observe({
+        added: _.bind(@onServerRunnerEvent, @)
+      })
 
     finally
       log.return()
@@ -69,7 +69,6 @@ class ClientServerReporter
       log.enter('onServerRunnerEvent')
       expect(doc).to.be.an('object')
       expect(doc.event).to.be.a('string')
-
       if doc.event is "run order"
         return
       expect(doc.data).to.be.an('object')
