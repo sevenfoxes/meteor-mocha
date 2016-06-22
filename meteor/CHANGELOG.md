@@ -1,3 +1,7 @@
+# 2.4.5_4
+
+- Fix bug related to firing 'end all' mocha runner event. [More details](https://github.com/practicalmeteor/meteor-mocha-console-runner/issues/6)  
+
 # 2.4.5_3
 
 - Bug fixes (more details below) - [#42](https://github.com/practicalmeteor/meteor-mocha/issues/42), [#44](https://github.com/practicalmeteor/meteor-mocha/issues/44), [#45](https://github.com/practicalmeteor/meteor-mocha/issues/45), 

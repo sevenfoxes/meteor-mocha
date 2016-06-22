@@ -24,7 +24,7 @@ Package.onTest(function (api) {
     'coffeescript',
     'practicalmeteor:loglevel',
     'practicalmeteor:chai',
-    'practicalmeteor:mocha@=2.4.5-rc4.1',
+    'practicalmeteor:mocha@=2.4.5_4',
     'ecmascript',
     'test-package'
   ]);
