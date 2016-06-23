@@ -27,28 +27,28 @@ function createCompareFile {
 export TEST_FILE="$REPO_HOME/meteor/tests/test-app.html"
 
 cd "$REPO_HOME/meteor/test-app"
-spacejam test --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js"  --driver-package practicalmeteor:mocha
+spacejam test --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js"  --driver-package practicalmeteor:mocha
 createCompareFile "$?" "$EXIT_STATUS" "test-app-parallel"
 EXIT_STATUS="$?"
 
 
 cd "$REPO_HOME/meteor/test-app"
 MOCHA_RUN_ORDER='serial'
-spacejam test --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js"  --driver-package practicalmeteor:mocha
+spacejam test --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js"  --driver-package practicalmeteor:mocha
 createCompareFile "$?" "$EXIT_STATUS" "test-app-serial"
 EXIT_STATUS="$?"
 
 
 cd "$REPO_HOME/meteor/test-app"
 MOCHA_RUN_ORDER='parallel'
-spacejam test --full-app --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js"  --driver-package practicalmeteor:mocha
+spacejam test --full-app --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js"  --driver-package practicalmeteor:mocha
 createCompareFile "$?" "$EXIT_STATUS" "test-full-app-parallel"
 EXIT_STATUS="$?"
 
 
 cd "$REPO_HOME/meteor/test-app"
 MOCHA_RUN_ORDER='serial'
-spacejam test --full-app --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js"  --driver-package practicalmeteor:mocha
+spacejam test --full-app --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js"  --driver-package practicalmeteor:mocha
 createCompareFile "$?" "$EXIT_STATUS" "test-full-app-serial"
 EXIT_STATUS="$?"
 
@@ -57,14 +57,14 @@ export TEST_FILE="$REPO_HOME/meteor/tests/test-package.html"
 
 cd "$REPO_HOME/meteor/test-package"
 MOCHA_RUN_ORDER='parallel'
-spacejam test-packages --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js" --driver-package practicalmeteor:mocha ./
+spacejam test-packages --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js" --driver-package practicalmeteor:mocha ./
 createCompareFile "$?" "$EXIT_STATUS" "test-package-parallel"
 EXIT_STATUS="$?"
 
 
 cd "$REPO_HOME/meteor/test-package"
 MOCHA_RUN_ORDER='serial'
-spacejam test-packages --phantomjs-script "$REPO_HOME/meteor/tests/test-app-tests.js" --driver-package practicalmeteor:mocha ./
+spacejam test-packages --phantomjs-script "$REPO_HOME/meteor/tests/phantomjs-test-script.js" --driver-package practicalmeteor:mocha ./
 createCompareFile "$?" "$EXIT_STATUS" "test-package-serial"
 EXIT_STATUS="$?"
 

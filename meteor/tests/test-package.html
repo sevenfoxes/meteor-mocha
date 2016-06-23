@@ -117,14 +117,14 @@ return (0, _practicalmeteorChai.expect)([1, 2, 3].indexOf(0)).to.equal(-1);     
     at Assertion.&lt;anonymous&gt; (packages/practicalmeteor_chai.js:1236:10)
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:88:5)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 87
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:63:33)</pre><pre style="display: none;"><code>// 87
     (0, _practicalmeteorChai.expect)(false).to.be["true"];                                               // 88</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=6%20-%20All%20async%20test%20suite">6 - All async test suite</a></h1><ul><li class="test fail fast"><h2>passing <a href="/?grep=6%20-%20All%20async%20test%20suite%20passing" class="replay">‣</a></h2><pre class="error">Error: expected undefined to be true
     at Assertion.&lt;anonymous&gt; (packages/practicalmeteor_chai.js:1236:10)
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:125:5)
-    at run (packages/practicalmeteor:mocha-core/server.js:54:16)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 124
+    at run (packages/practicalmeteor:mocha-core/server.js:56:16)
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:63:33)</pre><pre style="display: none;"><code>// 124
     (0, _practicalmeteorChai.expect)(this.keepContext).to.be["true"];                                    // 125
     Meteor.setTimeout(function () {                                                                      // 126
       done();                                                                                            // 127
@@ -141,16 +141,16 @@ return (0, _practicalmeteorChai.expect)([1, 2, 3].indexOf(0)).to.equal(-1);     
       _id: 'xxx'                                                                                         // 143
     });                                                                                                  // 142</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=8%20-%20skip%20suite">8 - skip suite</a></h1><ul><li class="test pass pending fast"><h2>this won't run</h2></li></ul></li><li class="suite"><h1><a href="/?grep=9%20-%20%20before%20and%20after%20hooks%20errors">9 -  before and after hooks errors</a></h1><ul><li class="test fail fast"><h2>"before all" hook: "before all" hook: wrappedFunction <a href="/?grep=9%20-%20%20before%20and%20after%20hooks%20errors%20%22before%20all%22%20hook%3A%20%22before%20all%22%20hook%3A%20wrappedFunction" class="replay">‣</a></h2><pre class="error">Error: Error from before
     at Hook.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:158:11)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 157
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)</pre><pre style="display: none;"><code>// 157
     throw new Error("Error from before");                                                                // 158</code></pre></li><li class="test fail fast"><h2>"after all" hook: "after all" hook: wrappedFunction <a href="/?grep=9%20-%20%20before%20and%20after%20hooks%20errors%20%22after%20all%22%20hook%3A%20%22after%20all%22%20hook%3A%20wrappedFunction" class="replay">‣</a></h2><pre class="error">Error: Error from after
     at Hook.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:166:11)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 165
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)</pre><pre style="display: none;"><code>// 165
     throw new Error("Error from after");                                                                 // 166</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=10%20-%20beforeEach%20and%20afterEach%20hooks%20errors">10 - beforeEach and afterEach hooks errors</a></h1><ul><li class="test fail fast"><h2>"before each" hook: "before each" hook: wrappedFunction for "It hooks with errors" <a href="/?grep=10%20-%20beforeEach%20and%20afterEach%20hooks%20errors%20%22before%20each%22%20hook%3A%20%22before%20each%22%20hook%3A%20wrappedFunction%20for%20%22It%20hooks%20with%20errors%22" class="replay">‣</a></h2><pre class="error">Error: Error from beforeEach
     at Hook.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:174:11)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 173
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)</pre><pre style="display: none;"><code>// 173
     throw new Error("Error from beforeEach");                                                            // 174</code></pre></li><li class="test fail fast"><h2>"after each" hook: "after each" hook: wrappedFunction for "It hooks with errors" <a href="/?grep=10%20-%20beforeEach%20and%20afterEach%20hooks%20errors%20%22after%20each%22%20hook%3A%20%22after%20each%22%20hook%3A%20wrappedFunction%20for%20%22It%20hooks%20with%20errors%22" class="replay">‣</a></h2><pre class="error">Error: Error from afterEach
     at Hook.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:183:11)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 181
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)</pre><pre style="display: none;"><code>// 181
                                                     //
     throw new Error("Error from afterEach");                                                             // 183</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=11%20-%20Specify">11 - Specify</a></h1><ul><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=11%20-%20Specify%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 190
     (0, _practicalmeteorChai.expect)(true).to.be["true"];                                                // 191</code></pre></li><li class="test pass pending fast"><h2>Skip: This won't run</h2></li></ul></li><li class="suite"><h1><a href="/?grep=12%20-%20Context%20test">12 - Context test</a></h1><ul><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=12%20-%20Context%20test%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 201
@@ -164,7 +164,7 @@ return (0, _practicalmeteorChai.expect)([1, 2, 3].indexOf(0)).to.equal(-1);     
     at doResolve (/home/test/.meteor/promise/core.js:1:1)
     at new Promise (/home/test/.meteor/promise/core.js:1:1)
     at Test.&lt;anonymous&gt; (packages/local-test:test-package/mocha-tests.js:224:12)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)</pre><pre style="display: none;"><code>// 223
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)</pre><pre style="display: none;"><code>// 223
     return new Promise(function (resolve, reject) {                                                      // 224
       reject(new Error('fails-just-fine'));                                                              // 225
     });                                                                                                  // 226</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=Server%20Test">Server Test</a></h1><ul><li class="test pass fast"><h2>this test is server side only<span class="duration">0</span> <a href="/?grep=Server%20Test%20this%20test%20is%20server%20side%20only" class="replay">‣</a></h2><pre style="display: none;"><code>// 6
@@ -175,8 +175,8 @@ return (0, _practicalmeteorChai.expect)([1, 2, 3].indexOf(0)).to.equal(-1);     
     at Assertion.&lt;anonymous&gt; (packages/practicalmeteor_chai.js:1236:10)
     at Assertion.Object.defineProperty.get (packages/practicalmeteor_chai.js:4100:29)
     at Test.&lt;anonymous&gt; (packages/local-test:test-package/mocha-globals-tests.js:21:12)
-    at run (packages/practicalmeteor:mocha-core/server.js:32:29)
-    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:61:33)</pre><pre style="display: none;"><code>// 20
+    at run (packages/practicalmeteor:mocha-core/server.js:34:29)
+    at Context.wrappedFunction (packages/practicalmeteor:mocha-core/server.js:63:33)</pre><pre style="display: none;"><code>// 20
     return (0, _practicalmeteorChai.expect)(false).to.be["true"];                                        // 21</code></pre></li><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=Globals%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 24
     (0, _practicalmeteorChai.expect)(true).to.be['true'];                                                // 25</code></pre></li><li class="test pass pending fast"><h2>Skip: This won't run (xspecify)</h2></li><li class="suite"><h1><a href="/?grep=Globals%20Skip%20suite%20%5C(xdescribe%5C)">Skip suite (xdescribe)</a></h1><ul><li class="test pass pending fast"><h2>this won't run</h2></li></ul></li><li class="suite"><h1><a href="/?grep=Globals%20Context%20test">Context test</a></h1><ul><li class="test pass fast"><h2>it works<span class="duration">0</span> <a href="/?grep=Globals%20Context%20test%20it%20works" class="replay">‣</a></h2><pre style="display: none;"><code>// 39
       (0, _practicalmeteorChai.expect)(true).to.be['true'];                                              // 40</code></pre></li></ul></li><li class="suite"><h1><a href="/?grep=Globals%20Skip%20suite%20%5C(xcontext%5C)">Skip suite (xcontext)</a></h1><ul><li class="test pass pending fast"><h2>This won't run</h2></li></ul></li></ul></li></ul></div> </div> </div>
