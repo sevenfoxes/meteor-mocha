@@ -3,7 +3,7 @@ Package.describe({
   name: "practicalmeteor:mocha",
   summary: "Write package tests with mocha and run them in the browser or from the command line with spacejam.",
   git: "https://github.com/practicalmeteor/meteor-mocha.git",
-  version: '2.4.5_4',
+  version: '2.4.5-rc5.1',
   testOnly: true
 });
 
@@ -42,14 +42,14 @@ Package.onUse(function (api) {
   api.use(['blaze', 'templating', 'spacebars', 'tracker'], 'client');
 
   api.use([
-    'practicalmeteor:mocha-core@1.0.0',
+    'practicalmeteor:mocha-core@1.0.1-rc.1',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
     'practicalmeteor:sinon@1.14.1_2'
   ]);
 
   api.imply([
-    'practicalmeteor:mocha-core@1.0.0',
+    'practicalmeteor:mocha-core@1.0.1-rc.1',
     'practicalmeteor:loglevel@1.2.0_2',
     'practicalmeteor:chai@2.1.0_1',
     'practicalmeteor:sinon@1.14.1_2'
