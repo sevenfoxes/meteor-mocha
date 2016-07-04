@@ -69,7 +69,7 @@ class ClientServerReporter
       log.enter('onServerRunnerEvent')
       expect(doc).to.be.an('object')
       expect(doc.event).to.be.a('string')
-      if doc.event is "run order"
+      if doc.event is "run mocha"
         return
       expect(doc.data).to.be.an('object')
 
