@@ -129,7 +129,6 @@ class MochaRunner extends EventEmitter
 
   setReporter: (@reporter)->
 
-
   escapeGrep: (grep = '')->
     try
       log.enter("escapeGrep", grep)
@@ -153,7 +152,6 @@ class MochaRunner extends EventEmitter
 
       Tracker.autorun =>
         event = @serverRunEvents.findOne({event: "run mocha"})
-
         if event?.data.reporter? and _.contains(REPORTERS, event.data.reporter)
           reporter = reporters[event.data.reporter]
           @setReporter reporter
@@ -179,11 +177,3 @@ class MochaRunner extends EventEmitter
 
 
 module.exports = MochaRunner.get()
-
-if Meteor.isClient
-# Run the tests on Meteor.startup, after all code is loaded and ready
-  Meteor.startup ->
-    # We defer because if another package sets a different reporter on Meteor.startup,
-    # that's the reporter that we want to be used.
-    Meteor.defer ->
-      MochaRunner.get().runEverywhere()
