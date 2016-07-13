@@ -83,6 +83,22 @@ After all the thanks, those are the differences:
 
 - Most importantly, we created it in order to be able to run our mocha tests using spacejam in our continuous integration environment, and to be able to finally stop using munit, our weird creation that tried to create a mocha style interface on top of meteor's tinytest, which was forcing the issue.
 
+
+## Using Console or XUnit reporters
+
+To set other reporter you just need to export MOCHA_REPORTER env var.
+
+For ConsoleReporter: `MOCHA_REPORTER=console`
+For XunitReporter: `MOCHA_REPORTER=xunit`
+
+Those reporter are mean to be use in combination with spacejam, for example
+
+`spacejam test --mocha` Spacejam will use the console reporter and you will see the results in your console. 
+
+`spacejam test --mocha --xunit-out path/to/file.xml` Spacejam in addition to print the tests in your console will also create a file using XUnit format.
+
+For more details about this integration go [HERE](https://github.com/practicalmeteor/spacejam)
+
 ## Writing your own custom reporters
 
 This package, in combination with spacejam, will support writing and using your own custom reporters. This can be useful if you need a specific output format, such as xunit, in your CI env.
