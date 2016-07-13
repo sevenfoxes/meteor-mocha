@@ -1,3 +1,8 @@
+# 2.4.5_6
+
+- Add `ConsoleReporter` and `XunitReporter` more details in how to run then [HERE]().
+- Run rests on `runTests` functions. Fixes [#59](https://github.com/practicalmeteor/meteor-mocha/issues/51)
+
 # 2.4.5_5
 
 - Fix bug when running on linux. [More details](https://github.com/practicalmeteor/meteor-mocha/issues/51)

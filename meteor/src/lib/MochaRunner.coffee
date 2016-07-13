@@ -7,7 +7,6 @@ utils                 = require("mocha/lib/utils")
 {EventEmitter}        = require("events")
 {ObjectLogger}        = require("meteor/practicalmeteor:loglevel")
 MeteorPublishReporter = require("./../reporters/MeteorPublishReporter")
-
 log = new ObjectLogger('MochaRunner', 'info')
 
 class MochaRunner extends EventEmitter
@@ -17,7 +16,7 @@ class MochaRunner extends EventEmitter
   @get: ->
     MochaRunner.instance ?= new MochaRunner()
 
-  VERSION: "2.4.5_5"
+  VERSION: "2.4.5_6"
   serverRunEvents: null
   publishers: {}
 
@@ -130,7 +129,6 @@ class MochaRunner extends EventEmitter
 
   setReporter: (@reporter)->
 
-
   escapeGrep: (grep = '')->
     try
       log.enter("escapeGrep", grep)
@@ -145,6 +143,7 @@ class MochaRunner extends EventEmitter
     try
       log.enter 'onServerRunSubscriptionReady'
       ClientServerReporter = require("./../reporters/ClientServerReporter")
+      { REPORTERS, reporters} = require("../reporters")
       query = utils.parseQuery(location.search || '');
 
       Meteor.call "mocha/runServerTests", @runId,  query.grep, (err)->
@@ -152,12 +151,18 @@ class MochaRunner extends EventEmitter
         log.error(err) if err
 
       Tracker.autorun =>
-        runOrder = @serverRunEvents.findOne({event: "run order"})
-        if runOrder?.data is "serial"
+        event = @serverRunEvents.findOne({event: "run mocha"})
+        if event?.data.reporter? and _.contains(REPORTERS, event.data.reporter)
+          reporter = reporters[event.data.reporter]
+          @setReporter reporter
+
+        if event?.data.runOrder is "serial"
           reporter = new ClientServerReporter(null, {runOrder: "serial"})
-        else if runOrder?.data is "parallel"
+        else if event?.data.runOrder is "parallel"
           mocha.reporter(ClientServerReporter)
           mocha.run(->)
+
+
 
     finally
       log.return()
@@ -172,11 +177,3 @@ class MochaRunner extends EventEmitter
 
 
 module.exports = MochaRunner.get()
-
-if Meteor.isClient
-# Run the tests on Meteor.startup, after all code is loaded and ready
-  Meteor.startup ->
-    # We defer because if another package sets a different reporter on Meteor.startup,
-    # that's the reporter that we want to be used.
-    Meteor.defer ->
-      MochaRunner.get().runEverywhere()

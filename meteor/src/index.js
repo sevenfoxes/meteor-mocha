@@ -8,7 +8,7 @@ import {hideOtherCSS, hideApp} from 'meteor/tmeasday:test-reporter-helpers';
 export const runTests = () => {
   hideApp('.mocha-wrapper');
   hideOtherCSS();
-  MochaRunner.setReporter(HtmlReporter)
+  MochaRunner.runEverywhere()
 };
 
 let { before, after, beforeEach, afterEach,

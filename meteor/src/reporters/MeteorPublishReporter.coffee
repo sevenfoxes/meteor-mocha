@@ -34,10 +34,15 @@ class MeteorPublishReporter extends BaseReporter
       # Make sure we always run within a Fiber
       @added = Meteor.bindEnvironment(@added, null, @)
 
-      # Specify how to run tests 'serial' or 'parallel'
-      # Running in 'serial' will start server tests first and then client tests
-      @added 'run order', process.env.MOCHA_RUN_ORDER || 'parallel'
-
+      {REPORTERS, HTML_REPORTER} = require("./index")
+      mochaReporter = process.env.MOCHA_REPORTER || HTML_REPORTER
+      if mochaReporter and not _.contains(REPORTERS, mochaReporter)
+        log.info "Can't find '#{mochaReporter}' reporter. Using '#{HTML_REPORTER}' instead."
+        mochaReporter = HTML_REPORTER
+# 
+#      # Specify how to run tests 'serial' or 'parallel'
+#      # Running in 'serial' will start server tests first and then client tests
+      @added 'run mocha', { reporter: mochaReporter,   runOrder: process.env.MOCHA_RUN_ORDER || 'parallel' }
 
       @runner.on 'start', =>
         try
