@@ -25,7 +25,7 @@ class MochaRunner extends EventEmitter
     try
       log.enter 'constructor'
       @utils = utils;
-      @serverRunEvents = new Mongo.Collection('mochaServerRunEvents')
+      @serverRunEvents = new Mongo.Collection('mochaBlanketServerRunEvents')
       if Meteor.isServer
         Meteor.methods({
           "mocha/runServerTests": @runServerTests.bind(@)
