@@ -1,6 +1,6 @@
 // Using the "wrapper package" version format
 Package.describe({
-  name: "practicalmeteor:mocha",
+  name: "practicalmeteor:mocha-blanket",
   summary: "Write package tests with mocha and run them in the browser or from the command line with spacejam.",
   git: "https://github.com/practicalmeteor/meteor-mocha.git",
   version: '2.4.5_6',
